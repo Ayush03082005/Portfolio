@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Ferris Wheel</title>
+    <style>
+        /* Base Setup */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f4f8; /* Light Sky Background */
+            font-family: 'Inter', sans-serif;
+            overflow: hidden; /* Prevent scrollbar from animation wobble */
+        }
+
+        /* Keyframe Animations */
+        @keyframes wheel-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes cabin-level {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); } /* Counter-rotates the wheel spin */
+        }
+
+        /* Ferris Wheel Container */
+        .ferris-wheel {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 50px auto;
+        }
+
+        /* Center Axle */
+        .wheel-axle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background-color: #d94646; /* Red Hub */
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+        }
+
+        /* Spinning Ring/Spoke Container */
+        .wheel-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 4px solid #6366f1; /* Indigo Ring */
+            border-radius: 50%;
+            box-sizing: border-box;
+            
+            /* Animation */
+            animation: wheel-spin 30s linear infinite;
+        }
+
+        /* Spoke (8 spokes total) */
+        .spoke {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px; /* Half the wheel height/width */
+            height: 4px;
+            background-color: #4b5563; /* Gray Spokes */
+            transform-origin: 0% 50%; /* Pivot point at the center of the wheel */
+        }
+
+        /* Cabin (8 cabins total) */
+        .cabin {
+            position: absolute;
+            bottom: -20px; /* Position below the spoke end */
+            left: 198px; /* At the end of the 200px spoke */
+            width: 40px;
+            height: 40px;
+            background-color: #34d399; /* Green Cabin */
+            border: 2px solid #065f46;
+            border-radius: 6px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            
+            /* Counter Animation */
+            animation: cabin-level 30s linear infinite;
+            transform-origin: 50% 50%;
+            z-index: 5;
+        }
+
+        /* Positioning the 8 spokes and attached cabins (Calculated using 360/8 = 45 degrees) */
+        .spoke:nth-child(1) { transform: rotate(0deg); }
+        .spoke:nth-child(2) { transform: rotate(45deg); }
+        .spoke:nth-child(3) { transform: rotate(90deg); }
+        .spoke:nth-child(4) { transform: rotate(135deg); }
+        .spoke:nth-child(5) { transform: rotate(180deg); }
+        .spoke:nth-child(6) { transform: rotate(225deg); }
+        .spoke:nth-child(7) { transform: rotate(270deg); }
+        .spoke:nth-child(8) { transform: rotate(315deg); }
+
+        /* General Styling for the header */
+        .title-card {
+            position: absolute;
+            top: 5vh;
+            text-align: center;
+            padding: 10px 20px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            color: #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="title-card">
+        <h1 style="font-size: 1.5rem; margin: 0;">The Spinning Wheel</h1>
+        <p style="font-size: 0.875rem; margin: 5px 0 0;">(Pure CSS Animation)</p>
+    </div>
+    
+    <div class="ferris-wheel">
+        
+        <!-- The Main Spinning Element (Ring and Spokes/Cabins) -->
+        <div class="wheel-ring">
+            
+            <!-- Spoke and Cabin Pair 1 (0 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 2 (45 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 3 (90 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 4 (135 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 5 (180 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 6 (225 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 7 (270 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+            <!-- Spoke and Cabin Pair 8 (315 deg) -->
+            <div class="spoke">
+                <div class="cabin"></div>
+            </div>
+
+        </div>
+        
+        <!-- The Center Axle (Sits on top of the wheel ring) -->
+        <div class="wheel-axle"></div>
+
+    </div>
+
+</body>
+</html>

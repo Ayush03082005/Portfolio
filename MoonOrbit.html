@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Moon Orbiting Earth — CSS Animation</title>
+  <style>
+    :root{
+      --bg:#060814;
+      --star:#e9f2ff;
+      --earth:#2b7bd3;
+      --ocean:#1f6fb4;
+      --land:#1aa260;
+      --moon:#e6e6e6;
+      --orbit-duration:8s; /* speed change */
+    }
+
+    
+    html,body{
+      height:100%;
+      margin:0;
+      font-family:system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: radial-gradient(circle at 20% 10%, rgba(255,255,255,0.03), transparent 5%),
+                  radial-gradient(circle at 80% 30%, rgba(255,255,255,0.02), transparent 4%),
+                  var(--bg);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+    }
+
+    /* Stars */
+    .stars{
+      position:fixed;
+      inset:0;
+      pointer-events:none;
+      background-image:
+        radial-gradient(circle, var(--star) 0.8px, transparent 0.9px),
+        radial-gradient(circle, rgba(255,255,255,0.7) 0.6px, transparent 0.7px);
+      background-size: 80px 80px, 120px 120px;
+      opacity:0.5;
+      z-index:0;
+    }
+
+    /* scene  */
+    .scene{
+      width:460px;
+      height:460px;
+      position:relative;
+      display:grid;
+      place-items:center;
+      z-index:1;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Earth */
+    .earth{
+      width:160px;
+      height:160px;
+      border-radius:50%;
+      background: radial-gradient(circle at 30% 20%, #6db6ff 0%, var(--ocean) 40%, var(--earth) 60%);
+      box-shadow:
+        0 14px 30px rgba(0,0,0,0.6),
+        inset -10px -6px 30px rgba(0,0,0,0.15),
+        0 0 18px rgba(30,140,255,0.08);
+      position:relative;
+      z-index:5;
+      overflow:hidden;
+    }
+
+    /* simple land */
+    .earth::before,
+    .earth::after{
+      content:"";
+      position:absolute;
+      background: linear-gradient(120deg, rgba(26,162,96,1), rgba(18,128,70,0.9));
+      border-radius:50%;
+      opacity:0.95;
+      transform:rotate(-15deg);
+      mix-blend-mode:screen;
+    }
+    .earth::before{
+      width:70px; height:40px;
+      left:18px; top:32px;
+      filter:blur(0.5px);
+    }
+    .earth::after{
+      width:90px; height:52px;
+      right:20px; bottom:28px;
+      transform:rotate(20deg);
+    }
+
+    /* atmosphere*/
+    .earth-ring{
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      border:2px solid rgba(30,130,255,0.06);
+      filter:blur(2px);
+      z-index:3;
+    }
+
+    /* orbit path */
+    .orbit-path{
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      border:1px dashed rgba(255,255,255,0.06);
+      z-index:2;
+      display:block;
+    }
+
+    /* orbit container that rotates */
+    .orbit{
+      position:absolute;
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      display:block;
+      animation: spin var(--orbit-duration) linear infinite;
+      transform-origin:50% 50%;
+      z-index:4;
+    }
+
+    /* moon position */
+    .moon{
+      position:absolute;
+      right:0;
+      top:50%;
+      transform:translateY(-50%);
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background: linear-gradient(145deg, #ffffff 0%, #d9d9d9 60%);
+      box-shadow: 0 6px 12px rgba(0,0,0,0.45), inset -6px -4px 8px rgba(0,0,0,0.08);
+      z-index:6;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    /* moon crater */
+    .moon::before,
+    .moon::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      background:rgba(0,0,0,0.08);
+    }
+    .moon::before{ width:10px; height:10px; left:10px; top:8px; }
+    .moon::after{ width:6px; height:6px; right:8px; bottom:10px; opacity:0.12; }
+
+    /* shadow on moon*/
+    .moon-shadow{
+      position:absolute;
+      left:6px;
+      top:6px;
+      width:26px;
+      height:26px;
+      border-radius:50%;
+      background: linear-gradient(90deg, rgba(0,0,0,0.05), transparent 40%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+
+    /* label block (optional) */
+    .label{
+      position:absolute;
+      bottom:14px;
+      left:50%;
+      transform:translateX(-50%);
+      color:rgba(255,255,255,0.9);
+      font-size:0.9rem;
+      background:rgba(0,0,0,0.25);
+      padding:6px 10px;
+      border-radius:8px;
+      backdrop-filter: blur(4px);
+      z-index:10;
+    }
+
+    
+
+    /* responsive smaller screens */
+    @media (max-width:420px){
+      .scene{ width:320px; height:320px;}
+      .orbit, .orbit-path{ width:220px; height:220px; }
+      .earth{ width:120px; height:120px;}
+      .earth-ring{ width:170px; height:170px;}
+      .moon{ width:30px; height:30px;}
+    }
+
+    /* spinning keyframes */
+    @keyframes spin{
+      from{ transform: rotate(0deg); }
+      to{ transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+
+  <main class="scene" role="img" aria-label="Illustration of the moon orbiting the Earth">
+    <!-- Orbit visual path -->
+    <span class="orbit-path" aria-hidden="true"></span>
+
+    <!-- Rotating orbit container (holds moon) -->
+    <div class="orbit" aria-hidden="true">
+      <div class="moon" title="Moon">
+        <span class="moon-shadow" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <!-- Earth at center -->
+    <div class="earth" title="Earth" aria-hidden="false">
+      <span class="earth-ring" aria-hidden="true"></span>
+    </div>
+
+    <div class="label">Moon orbiting Earth — hover to pause</div>
+  </main>
+</body>
+</html>

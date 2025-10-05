@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ayush Anand | Aspiring Software Engineer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="favicon.png" type="image/png" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ===== HEADER / NAVBAR ===== -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">Ayush Anand</div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="hamburger">&#9776;</div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="home" class="hero">
+    <div class="overlay"></div>
+    <div class="hero-content">
+      <h1>Hello, I'm <span>Ayush Anand</span></h1>
+      <p>An Aspiring <strong>Software Engineer</strong> passionate about turning ideas into code.</p>
+      <a href="#projects" class="btn">Explore My Work</a>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT SECTION ===== -->
+  <section id="about" class="about">
+    <div class="about-container">
+      <img src="Profile Photo.jpg" alt="Ayush Anand" class="profile-img" />
+      <div class="about-text">
+        <h2>About Me</h2>
+        <p>
+          I'm an aspiring <strong>Software Engineer</strong> who loves solving challenging problems through clean, efficient, and creative code. 
+          My passion lies in <strong>Data Structures & Algorithms (DSA)</strong> and building impactful software.
+        </p>
+        <p>
+          Besides coding, I enjoy playing <strong>volleyball</strong>, <strong>badminton</strong>, and <strong>chess</strong>. 
+          I’m also a <strong>book lover</strong> and love watching <strong>anime</strong> in my free time.
+        </p>
+
+        <h3>Skills</h3>
+        <ul class="skills">
+          <li>DSA</li>
+          <li>Java</li>
+          <li>C++</li>
+          <li>Problem Solving</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS SECTION ===== -->
+  <section id="projects" class="projects">
+    <h2>Projects</h2>
+    <div class="project-grid">
+      <article class="project-card">
+        <img src="Moon Orbit 2.jpg" alt="Moon Orbit" />
+        <div class="card-content">
+          <h3>Moon Orbit</h3>
+          <p>
+            A moon orbiting around earth, made just using html and css.
+          </p>
+          <div class="project-links">
+            <a href="MoonOrbit.html" target="_blank">Click Here</a>
+            
+          </div>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <img src="Ferris Wheel 2.png" alt="Ferris Wheel" />
+        <div class="card-content">
+          <h3>Personal Portfolio</h3>
+          <p>
+            Made a amazing ferris wheel only using html and css.
+          </p>
+          <div class="project-links">
+            <a href="FerrisWheel.html" target="_blank">Click Here</a>
+            
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT SECTION ===== -->
+  <section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <p>Have an opportunity, idea, or just want to say hi? Let’s connect!</p>
+    <div class="contact-info">
+      <p>Email: <a href="mailto:yhoomayush2005@gmail.com">yhoomayush2005@gmail.com</a></p>
+      <div class="social-links">
+        <a href="https://github.com/Ayush03082005" target="_blank">GitHub</a>
+        <a href="https://www.linkedin.com/in/ayush-anand-662361318/" target="_blank">LinkedIn</a>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <p>© 2025 Ayush Anand. Crafted with ❤️ using HTML & CSS.</p>
+  </footer>
+
+  <!-- ===== SCRIPT ===== -->
+  <script>
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
